@@ -18,6 +18,7 @@
     }
 
     video {
+      display: none;
       max-width: 90%;
       height: auto;
       border-radius: 16px;
@@ -25,9 +26,8 @@
     }
 
     button {
-      margin-top: 16px;
-      padding: 8px 16px;
-      font-size: 16px;
+      padding: 12px 20px;
+      font-size: 18px;
       border: none;
       border-radius: 8px;
       background-color: #444;
@@ -56,27 +56,22 @@
 </head>
 <body>
 
-  <video id="capsuleVideo" autoplay muted loop playsinline>
+  <button id="playButton" onclick="playVideo()">🎬 Tap to play with sound</button>
+
+  <video id="capsuleVideo" muted loop playsinline>
     <source src="short-video.mp4" type="video/mp4">
     Your browser does not support the video tag.
   </video>
 
-  <button id="soundToggle" onclick="toggleSound()">🔊 Tap for Sound</button>
-
   <script>
-    function toggleSound() {
+    function playVideo() {
       const video = document.getElementById('capsuleVideo');
-      const button = document.getElementById('soundToggle');
+      const button = document.getElementById('playButton');
 
-      if (video.muted) {
-        video.muted = false;
-        button.textContent = "🔇 Tap to Mute";
-      } else {
-        video.muted = true;
-        button.textContent = "🔊 Tap for Sound";
-      }
-
-      video.play();
+      button.style.display = 'none';         // Hide button
+      video.style.display = 'block';         // Show video
+      video.muted = false;                   // Unmute
+      video.play();                          // Start playing
     }
   </script>
 </body>
